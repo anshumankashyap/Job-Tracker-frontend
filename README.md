@@ -35,3 +35,7 @@ Visit `http://localhost:3000`
 
 ## Deployment
 Deployed on Vercel. Connect repo and add `NEXT_PUBLIC_API_URL` environment variable.
+
+## Related
+- **Backend:** [job-tracker-backend](https://github.com/anshumankashyap/Job-Tracker-backend)
+- **Live Demo:** [https://job-tracker-frontend.vercel.app](https://job-tracker-frontend.vercel.app)
