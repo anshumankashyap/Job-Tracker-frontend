@@ -43,7 +43,7 @@ export default function KanbanCard({ app, onEdit, onDelete, onAnalyze, onDragSta
           </span>
         )}
         {app.job_url && (
-          
+          <a          
             href={app.job_url}
             target="_blank"
             rel="noopener noreferrer"

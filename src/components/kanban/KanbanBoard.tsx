@@ -4,12 +4,14 @@ import KanbanColumn from './KanbanColumn';
 import { updateApplication } from '@/services/api';
 import toast from 'react-hot-toast';
 
-const COLUMNS = [
+export type Status = 'wishlist' | 'applied' | 'interview' | 'offer' | 'rejected';
+
+const COLUMNS: { status: Status; label: string; color: string; dotColor: string }[] = [
   { status: 'wishlist',  label: 'Wishlist',   color: 'bg-indigo-100', dotColor: 'bg-indigo-500' },
-  { status: 'applied',   label: 'Applied',    color: 'bg-blue-100',   dotColor: 'bg-blue-500'   },
+  { status: 'applied',   label: 'Applied',    color: 'bg-blue-100',   dotColor: 'bg-blue-500' },
   { status: 'interview', label: 'Interview',  color: 'bg-yellow-100', dotColor: 'bg-yellow-500' },
-  { status: 'offer',     label: 'Offer',      color: 'bg-green-100',  dotColor: 'bg-green-500'  },
-  { status: 'rejected',  label: 'Rejected',   color: 'bg-red-100',    dotColor: 'bg-red-500'    },
+  { status: 'offer',     label: 'Offer',      color: 'bg-green-100',  dotColor: 'bg-green-500' },
+  { status: 'rejected',  label: 'Rejected',   color: 'bg-red-100',    dotColor: 'bg-red-500' },
 ];
 
 interface Props {
@@ -17,7 +19,7 @@ interface Props {
   onEdit: (app: JobApplication) => void;
   onDelete: (app: JobApplication) => void;
   onAnalyze: (app: JobApplication) => void;
-  onStatusChange: (id: number, status: string) => void;
+  onStatusChange: (id: number, status: Status) => void;
 }
 
 export default function KanbanBoard({ applications, onEdit, onDelete, onAnalyze, onStatusChange }: Props) {
@@ -25,7 +27,7 @@ export default function KanbanBoard({ applications, onEdit, onDelete, onAnalyze,
     e.dataTransfer.setData('appId', String(id));
   };
 
-  const handleDrop = async (e: React.DragEvent, newStatus: string) => {
+  const handleDrop = async (e: React.DragEvent, newStatus: Status) => {
     const id = Number(e.dataTransfer.getData('appId'));
     const app = applications.find((a) => a.id === id);
     if (!app || app.status === newStatus) return;

@@ -27,7 +27,7 @@ API.interceptors.response.use(
 );
 
 // Auth
-export default
+export default API;
 
 export const registerUser = (data: { username: string; email: string; password: string }) =>
   API.post('/auth/register/', data);

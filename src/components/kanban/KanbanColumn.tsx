@@ -1,9 +1,10 @@
 'use client';
 import { JobApplication } from '@/types';
 import KanbanCard from './KanbanCard';
+import { Status } from './KanbanBoard';
 
 interface Props {
-  status: string;
+  status: Status;
   label: string;
   color: string;
   dotColor: string;
@@ -12,7 +13,7 @@ interface Props {
   onDelete: (app: JobApplication) => void;
   onAnalyze: (app: JobApplication) => void;
   onDragStart: (e: React.DragEvent, id: number) => void;
-  onDrop: (e: React.DragEvent, status: string) => void;
+  onDrop: (e: React.DragEvent, status: Status) => void;
 }
 
 export default function KanbanColumn({
